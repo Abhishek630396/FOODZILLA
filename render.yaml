@@ -7,11 +7,17 @@ services:
     region: oregon
     buildCommand: cd backend && npm ci
     startCommand: cd backend && node server.js
-    envVars:
-      PORT: "10000"
-      MONGO_URI: mongodb+srv://abhishekroyal630396_db_user:ZLj7OQVI6m9LL9Sf@cluster0.e3bbbls.mongodb.net/foodzilla_real_db?retryWrites=true&w=majority
 
-  # Frontend (React – Static Site)
+    # Correct format: envVars must be a LIST of objects (- key/value)
+    envVars:
+      - key: PORT
+        value: 10000                     # Render will override this with $PORT anyway (safe)
+
+      - key: MONGO_URI
+        sync: false                       # Forces you to set it securely in the dashboard
+        # → Go to your backend service → Environment → Add Secret → Key: MONGO_URI → paste full connection string
+
+  # Frontend (React → Static Site)
   - type: web
     name: foodzilla-frontend
     env: static
@@ -19,6 +25,7 @@ services:
     region: oregon
     buildCommand: cd frontend && npm ci && npm run build
     staticPublishPath: frontend/build
+
     routes:
       - type: rewrite
         source: /*
