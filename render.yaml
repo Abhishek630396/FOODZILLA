@@ -1,5 +1,5 @@
 services:
-  # Backend (Node.js API)
+  # Backend (Node.js API) - This is a Web Service
   - type: web
     name: foodzilla-backend
     env: node
@@ -11,14 +11,14 @@ services:
       - key: PORT
         value: 10000
       - key: MONGO_URI
-        sync: false   # You'll set this securely in the dashboard
+        sync: false   # Set this in the dashboard after creating
 
-  # Frontend (React → Static Site)
+  # Frontend (React Static Site) - This is a Static Site
   - type: web
     name: foodzilla-frontend
     env: static
-    plan: free
-    # ←←← REMOVE or comment out "region: oregon" from here!
+    # ← No plan: free (static sites are always free)
+    # ← No region: oregon (not supported for static)
     buildCommand: cd frontend && npm ci && npm run build
     staticPublishPath: frontend/build
     routes:
