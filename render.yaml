@@ -10,13 +10,14 @@ services:
       PORT: 10000
       MONGO_URI: mongodb+srv://abhishekroyal630396_db_user:ZLj7OQVI6m9LL9Sf@cluster0.e3bbbls.mongodb.net/foodzilla_real_db?retryWrites=true&w=majority
 
-  # Frontend Service
+  # Frontend Service (FIXED – THIS WILL REMOVE "Not Found")
   - type: web
     name: foodzilla-frontend
     env: static
     region: oregon
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/build
+    html: index.html
     routes:
       - type: rewrite
         source: /**
