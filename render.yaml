@@ -7,25 +7,20 @@ services:
     region: oregon
     buildCommand: cd backend && npm ci
     startCommand: cd backend && node server.js
-
-    # Correct format: envVars must be a LIST of objects (- key/value)
     envVars:
       - key: PORT
-        value: 10000                     # Render will override this with $PORT anyway (safe)
-
+        value: 10000
       - key: MONGO_URI
-        sync: false                       # Forces you to set it securely in the dashboard
-        # → Go to your backend service → Environment → Add Secret → Key: MONGO_URI → paste full connection string
+        sync: false   # You'll set this securely in the dashboard
 
   # Frontend (React → Static Site)
   - type: web
     name: foodzilla-frontend
     env: static
     plan: free
-    region: oregon
+    # ←←← REMOVE or comment out "region: oregon" from here!
     buildCommand: cd frontend && npm ci && npm run build
     staticPublishPath: frontend/build
-
     routes:
       - type: rewrite
         source: /*
