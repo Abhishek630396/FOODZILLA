@@ -40,11 +40,11 @@ function App() {
   const controls = useAnimation();
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('foodzilla_current_user');
+    const savedUser = localStorage.getItem('Abhishek Restaurant _current_user');
     if (savedUser) {
       const current = JSON.parse(savedUser);
       setUser(current);
-      if (current.email === "admin@foodzilla.com" || current.isAdmin) {
+      if (current.email === "admin@Abhishek Restaurant .com" || current.isAdmin) {
         setShowAdmin(true);
         loadAllUsers();
       }
@@ -171,9 +171,9 @@ function App() {
 
       toast.success(data.msg);
       setUser(data.user);
-      localStorage.setItem('foodzilla_current_user', JSON.stringify(data.user));
+      localStorage.setItem('Abhishek Restaurant _current_user', JSON.stringify(data.user));
 
-      if (data.user.email === "admin@foodzilla.com" || data.user.isAdmin) {
+      if (data.user.email === "admin@Abhishek Restaurant .com" || data.user.isAdmin) {
         setShowAdmin(true);
         loadAllUsers();
       }
@@ -188,7 +188,7 @@ function App() {
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem('foodzilla_current_user');
+    localStorage.removeItem('Abhishek Restaurant _current_user');
     setCart([]);
     setShowAdmin(false);
     toast.success("Logged out!");
@@ -233,7 +233,7 @@ function App() {
       {/* YOUR EXACT SAME UI BELOW - NO CHANGE */}
       <header className="bg-orange-600 text-white sticky top-0 z-40 shadow-lg">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-4xl font-bold">FoodZilla</h1>
+          <h1 className="text-4xl font-bold">Abhishek Restaurant </h1>
           <div className="flex items-center gap-6">
             <div className="relative">
               <input
@@ -249,7 +249,7 @@ function App() {
               {user ? (
                 <>
                   <div className="flex items-center gap-3 bg-white/20 px-6 py-3 rounded-full">
-                    <FaUser /> <span>{user.email === "admin@foodzilla.com" ? "Admin" : `Hi, ${user.name}`}</span>
+                    <FaUser /> <span>{user.email === "admin@Abhishek Restaurant .com" ? "Admin" : `Hi, ${user.name}`}</span>
                   </div>
                   <button onClick={handleLogout} className="flex items-center gap-2 bg-red-600 px-5 py-3 rounded-full hover:bg-red-700">
                     <FaSignOutAlt /> Logout
