@@ -1,0 +1,23 @@
+services:
+  # Backend Service
+  - type: web
+    name: foodzilla-backend
+    env: node
+    region: oregon
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      PORT: 10000
+      MONGO_URI: mongodb+srv://abhishekroyal630396_db_user:ZLj7OQVI6m9LL9Sf@cluster0.e3bbbls.mongodb.net/foodzilla_real_db?retryWrites=true&w=majority
+
+  # Frontend Service
+  - type: web
+    name: foodzilla-frontend
+    env: static
+    region: oregon
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    routes:
+      - type: rewrite
+        source: /**
+        destination: /index.html
