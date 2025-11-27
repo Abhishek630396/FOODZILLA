@@ -35,7 +35,7 @@ function App() {
   const [orderId, setOrderId] = useState('');
 
   const UPI_ID = '9182293460@ibl';
-  const API_URL = 'http://localhost:5000/api/auth';
+  const API_URL = 'https://foodzilla-backend.onrender.com/api/auth';
 
   const controls = useAnimation();
 
